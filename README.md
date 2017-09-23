@@ -14,7 +14,7 @@ This plugin uses the [inline image](http://iterm2.com/documentation-images.html)
 feature available in [iTerm2](http://iterm2.com/index.html) to display each
 lolcommit image in your terminal (after committing). For example:
 
-![](./assets/images/sample.png)
+![iterm inline sample screenshot](./assets/images/sample.png)
 
 ## Requirements
 

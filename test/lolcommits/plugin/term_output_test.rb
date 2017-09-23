@@ -6,6 +6,19 @@ describe Lolcommits::Plugin::TermOutput do
   include Lolcommits::TestHelpers::GitRepo
   include Lolcommits::TestHelpers::FakeIO
 
+  # initialize and reset env vars before tests run
+  before do
+    @old_tmux = ENV['TMUX']
+    @old_term_program = ENV['TERM_PROGRAM']
+    ENV['TERM_PROGRAM'] = "iTerm"
+    ENV['TMUX'] = nil
+  end
+
+  after do
+    ENV['TERM_PROGRAM'] = @old_term_program
+    ENV['TMUX'] = @old_tmux
+  end
+
   def plugin_name
     "term_output"
   end
@@ -51,39 +64,44 @@ describe Lolcommits::Plugin::TermOutput do
       end
     end
 
-    # describe "run_capture_ready" do
-    #   before { commit_repo_with_message("first commit!") }
-    #   after { teardown_repo }
+    describe "run_capture_ready" do
+      before { commit_repo_with_message("first commit!") }
+      after { teardown_repo }
 
-    #   it "syncs lolcommits" do
-    #     in_repo do
-    #       plugin.config = valid_enabled_config
-
-    #       stub_request(:post, "https://term_output.com/uplol").to_return(status: 200)
-
-    #       plugin.run_capture_ready
-
-    #       assert_requested :post, "https://term_output.com/uplol", times: 1,
-    #         headers: {'Content-Type' => /multipart\/form-data/ } do |req|
-    #         req.body.must_match /Content-Disposition: form-data;.+name="file"; filename="main_image.jpg.+"/
-    #         req.body.must_match 'name="repo"'
-    #         req.body.must_match 'name="author_name"'
-    #         req.body.must_match 'name="author_email"'
-    #         req.body.must_match 'name="sha"'
-    #         req.body.must_match 'name="key"'
-    #         req.body.must_match "plugin-test-repo"
-    #         req.body.must_match "first commit!"
-    #       end
-    #     end
-    #   end
-    # end
-
-    describe "configuration" do
-
-      before do
-        ENV['TERM_PROGRAM'] = "iTerm"
+      def check_plugin_output(matching_regex)
+        in_repo do
+          plugin.config = valid_enabled_config
+          output = fake_io_capture { plugin.run_capture_ready }
+          output.must_match matching_regex
+        end
       end
 
+      it "outputs lolcommits image inline to terminal" do
+        check_plugin_output(/^\e\]1337;File=inline=1\:.*\n;alt=first commit!;\a\n$/)
+      end
+
+      describe "when running in a Tmux session" do
+        before do
+          ENV['TMUX'] = 'true'
+        end
+
+        it "outputs lolcommits image inline to terminal with Tmux escape sequence" do
+          check_plugin_output(/^\ePtmux;\e\e\]1337;File=inline=1\:.*\n;alt=first commit!;\a\e\\\n$/)
+        end
+      end
+
+      describe "when using an unsupported terminal" do
+        before do
+          ENV['TERM_PROGRAM'] = "konsole"
+        end
+
+        it "outputs nothing to the terminal" do
+          check_plugin_output ""
+        end
+      end
+    end
+
+    describe "configuration" do
       it "allows plugin options to be configured" do
         inputs = %w( true )  # enabled option
         configured_plugin_options = {}
@@ -93,6 +111,24 @@ describe Lolcommits::Plugin::TermOutput do
         end
 
         configured_plugin_options.must_equal({ "enabled" => true })
+      end
+
+      describe "when terminal not supported" do
+        before do
+          ENV['TERM_PROGRAM'] = "konsole"
+        end
+
+        it "does not allow options to be configured" do
+          inputs = %w( true )  # enabled option
+          configured_plugin_options = {}
+
+          output = fake_io_capture(inputs: inputs) do
+            configured_plugin_options = plugin.configure_options!
+          end
+
+          assert_nil configured_plugin_options
+          output.must_match(/Sorry, this terminal does not support the term_output plugin/)
+        end
       end
     end
   end

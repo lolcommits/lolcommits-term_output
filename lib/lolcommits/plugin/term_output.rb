@@ -54,7 +54,7 @@ module Lolcommits
           if !runner.vcs_info || runner.vcs_info.repo.empty?
             debug 'repo is empty, skipping term output'
           else
-            base64 = Base64.encode64(open(runner.main_image, &:read))
+            base64 = Base64.encode64(open(runner.main_image, &:read).to_s)
             puts "#{begin_escape}1337;File=inline=1:#{base64};alt=#{runner.message};#{end_escape}\n"
           end
         else

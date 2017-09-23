@@ -20,9 +20,9 @@ lolcommit image in your terminal (after committing). For example:
 
 * Ruby >= 2.0.0
 * A webcam
+* [iTerm2](http://iterm2.com/index.html)
 * [ImageMagick](http://www.imagemagick.org)
 * [ffmpeg](https://www.ffmpeg.org) (optional) for animated gif capturing
-* [iTerm2](http://iterm2.com/index.html)
 
 ## Installation
 

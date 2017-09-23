@@ -47,8 +47,6 @@ module Lolcommits
       #
       # See here for more details: https://iterm2.com/documentation-images.html
       #
-      # @return [Nil] if any error occurs
-      #
       def run_capture_ready
         if terminal_supported?
           if !runner.vcs_info || runner.vcs_info.repo.empty?

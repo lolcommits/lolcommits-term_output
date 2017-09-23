@@ -8,13 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = Lolcommits::TermOutput::VERSION
   spec.authors       = ["Matthew Hutchinson"]
   spec.email         = ["matt@hiddenloop.com"]
-  spec.summary       = %q{Uploads lolcommits to a remote server}
-
-  spec.description = <<-EOF
-  Uploads lolcommits to a remote server, with optional key or  HTTP based
-  authentication.
-  EOF
-
+  spec.summary       = "Display lolcommits within your iTerm terminal"
+  spec.description   = "Display lolcommits within your iTerm terminal"
   spec.homepage      = "https://github.com/lolcommits/lolcommits-term_output"
   spec.license       = "LGPL-3"
 

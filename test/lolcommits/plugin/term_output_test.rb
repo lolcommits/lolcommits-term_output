@@ -1,5 +1,4 @@
 require "test_helper"
-require 'webmock/minitest'
 
 describe Lolcommits::Plugin::TermOutput do
 

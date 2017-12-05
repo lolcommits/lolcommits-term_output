@@ -30,7 +30,7 @@ Gem::Specification.new do |spec|
 
   spec.required_ruby_version = ">= 2.0.0"
 
-  spec.add_development_dependency "lolcommits"#, ">= 0.9.8" TODO - min version should be 0.9.8
+  spec.add_development_dependency "lolcommits", ">= 0.9.8"
   spec.add_development_dependency "bundler"
   spec.add_development_dependency "webmock"
   spec.add_development_dependency "pry"

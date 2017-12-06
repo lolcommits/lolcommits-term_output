@@ -2,8 +2,8 @@
 
 [![Gem Version](https://img.shields.io/gem/v/lolcommits-term_output.svg?style=flat)](http://rubygems.org/gems/lolcommits-term_output)
 [![Travis Build Status](https://travis-ci.org/lolcommits/lolcommits-term_output.svg?branch=master)](https://travis-ci.org/lolcommits/lolcommits-term_output)
-[![Test Coverage](https://codeclimate.com/github/lolcommits/lolcommits-term_output/badges/coverage.svg)](https://codeclimate.com/github/lolcommits/lolcommits-term_output/coverage)
-[![Code Climate](https://codeclimate.com/github/lolcommits/lolcommits-term_output/badges/gpa.svg)](https://codeclimate.com/github/lolcommits/lolcommits-term_output)
+[![Maintainability](https://img.shields.io/codeclimate/maintainability/lolcommits/lolcommits-term_output.svg)](https://codeclimate.com/github/lolcommits/lolcommits-term_output/maintainability)
+[![Test Coverage](https://img.shields.io/codeclimate/c/lolcommits/lolcommits-term_output.svg)](https://codeclimate.com/github/lolcommits/lolcommits-term_output/test_coverage)
 [![Gem Dependency Status](https://gemnasium.com/badges/github.com/lolcommits/lolcommits-term_output.svg)](https://gemnasium.com/github.com/lolcommits/lolcommits-term_output)
 
 [lolcommits](https://lolcommits.github.io/) takes a snapshot with your webcam

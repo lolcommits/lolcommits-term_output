@@ -36,7 +36,7 @@ module Lolcommits
           super
         else
           puts "Sorry, this terminal does not support the #{self.class.name} plugin (requires iTerm2)"
-          nil
+          {}
         end
       end
 

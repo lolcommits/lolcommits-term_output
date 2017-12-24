@@ -125,7 +125,7 @@ describe Lolcommits::Plugin::TermOutput do
             configured_plugin_options = plugin.configure_options!
           end
 
-          assert_nil configured_plugin_options
+          assert_equal configured_plugin_options, {}
           output.must_match(/Sorry, this terminal does not support the term_output plugin/)
         end
       end

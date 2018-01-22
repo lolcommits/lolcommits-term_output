@@ -6,15 +6,6 @@ module Lolcommits
     class TermOutput < Base
 
       ##
-      # Returns the name of the plugin to identify it to lolcommits.
-      #
-      # @return [String] the plugin name
-      #
-      def self.name
-        'term_output'
-      end
-
-      ##
       # Returns position(s) of when this plugin should run during the capture
       # process. The image is presented to the terminal when the capture is
       # ready.
@@ -35,7 +26,7 @@ module Lolcommits
         if terminal_supported?
           super
         else
-          puts "Sorry, this terminal does not support the #{self.class.name} plugin (requires iTerm2)"
+          puts "Sorry, this terminal does not support this plugin (requires iTerm2)"
           {}
         end
       end

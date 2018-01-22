@@ -18,14 +18,6 @@ describe Lolcommits::Plugin::TermOutput do
     ENV['TMUX'] = @old_tmux
   end
 
-  def plugin_name
-    "term_output"
-  end
-
-  it "should have a name" do
-    ::Lolcommits::Plugin::TermOutput.name.must_equal plugin_name
-  end
-
   it "should run on capture ready" do
     ::Lolcommits::Plugin::TermOutput.runner_order.must_equal [:capture_ready]
   end
@@ -34,11 +26,7 @@ describe Lolcommits::Plugin::TermOutput do
     def runner
       # a simple lolcommits runner with an empty configuration Hash
       @runner ||= Lolcommits::Runner.new(
-        main_image: Tempfile.new('main_image.jpg'),
-        config: OpenStruct.new(
-          read_configuration: {},
-          loldir: File.expand_path("#{__dir__}../../../images")
-        )
+        main_image: Tempfile.new('main_image.jpg')
       )
     end
 
@@ -47,18 +35,16 @@ describe Lolcommits::Plugin::TermOutput do
     end
 
     def valid_enabled_config
-      @config ||= OpenStruct.new(
-        read_configuration: { plugin_name => { "enabled" => true } }
-      )
+      { enabled: true }
     end
 
     describe "#enabled?" do
       it "is false by default" do
-        plugin.enabled?.must_equal false
+        assert_nil plugin.enabled?
       end
 
       it "is true when configured" do
-        plugin.config = valid_enabled_config
+        plugin.configuration = valid_enabled_config
         plugin.enabled?.must_equal true
       end
     end
@@ -69,7 +55,7 @@ describe Lolcommits::Plugin::TermOutput do
 
       def check_plugin_output(matching_regex)
         in_repo do
-          plugin.config = valid_enabled_config
+          plugin.configuration = valid_enabled_config
           output = fake_io_capture { plugin.run_capture_ready }
           output.must_match matching_regex
         end
@@ -109,7 +95,7 @@ describe Lolcommits::Plugin::TermOutput do
           configured_plugin_options = plugin.configure_options!
         end
 
-        configured_plugin_options.must_equal({ "enabled" => true })
+        configured_plugin_options.must_equal({ enabled: true })
       end
 
       describe "when terminal not supported" do
@@ -126,7 +112,7 @@ describe Lolcommits::Plugin::TermOutput do
           end
 
           assert_equal configured_plugin_options, {}
-          output.must_match(/Sorry, this terminal does not support the term_output plugin/)
+          output.must_match(/Sorry, this terminal does not support this plugin/)
         end
       end
     end

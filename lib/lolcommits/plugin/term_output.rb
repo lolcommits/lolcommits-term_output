@@ -5,17 +5,6 @@ module Lolcommits
   module Plugin
     class TermOutput < Base
 
-      ##
-      # Returns position(s) of when this plugin should run during the capture
-      # process. The image is presented to the terminal when the capture is
-      # ready.
-      #
-      # @return [Array] the position(s) (:capture_ready)
-      #
-      def self.runner_order
-        [:capture_ready]
-      end
-
       ## Prompts the user to configure the plugin's options. The default
       #superclass method will ask for the `enabled` option to be set.
       #

@@ -18,10 +18,6 @@ describe Lolcommits::Plugin::TermOutput do
     ENV['TMUX'] = @old_tmux
   end
 
-  it "should run on capture ready" do
-    ::Lolcommits::Plugin::TermOutput.runner_order.must_equal [:capture_ready]
-  end
-
   describe "with a runner" do
     def runner
       # a simple lolcommits runner with an empty configuration Hash

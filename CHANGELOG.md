@@ -1,0 +1,56 @@
+# ChangeLog
+
+All notable changes to this project will be documented in this file.
+
+The format is based on [Keep a Changelog](KeepAChangelog) and this project
+adheres to [Semantic Versioning](Semver).
+
+## [Unreleased]
+
+- Your contribution here!
+
+## [0.1.1] - 2018-05-24
+### Changed
+- Updated gemspec meta data links.
+
+## [0.1.0] - 2018-03-27
+### Removed
+- Remove runner_order method
+
+## [0.0.6] - 2018-02-05
+### Removed
+- Dropped support for Ruby 2.0
+
+## [0.0.5] - 2018-01-22
+### Changed
+- Update Travis Rubies
+- Require at least lolcommits 0.10.0
+
+## [0.0.4] - 2017-12-24
+### Changed
+- Return a hash {} for configure_options
+
+## [0.0.3] - 2017-12-06
+### Changed
+- Update README
+- Remove vendored font file
+
+## [0.0.2] - 2017-12-05
+### Removed
+- Remove webmock dependency
+
+## [0.0.1] - 2017-12-05
+### Changed
+- Initial release
+
+[Unreleased]: https://github.com/lolcommits/lolcommits-term_output/compare/v0.1.1...HEAD
+[0.1.1]: https://github.com/lolcommits/lolcommits-term_output/compare/v0.1.0...v0.1.1
+[0.1.0]: https://github.com/lolcommits/lolcommits-term_output/compare/v0.0.6...v0.1.0
+[0.0.6]: https://github.com/lolcommits/lolcommits-term_output/compare/v0.0.5...v0.0.6
+[0.0.5]: https://github.com/lolcommits/lolcommits-term_output/compare/v0.0.4...v0.0.5
+[0.0.4]: https://github.com/lolcommits/lolcommits-term_output/compare/v0.0.3...v0.0.4
+[0.0.3]: https://github.com/lolcommits/lolcommits-term_output/compare/v0.0.2...v0.0.3
+[0.0.2]: https://github.com/lolcommits/lolcommits-term_output/compare/v0.0.1...v0.0.2
+[0.0.1]: https://github.com/lolcommits/lolcommits-term_output/compare/0251ee8...v0.0.1
+[KeepAChangelog]: http://keepachangelog.com/en/1.0.0/
+[Semver]: http://semver.org/spec/v2.0.0.html

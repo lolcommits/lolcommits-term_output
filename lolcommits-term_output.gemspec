@@ -1,17 +1,16 @@
-# coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'lolcommits/term_output/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "lolcommits-term_output"
-  spec.version       = Lolcommits::TermOutput::VERSION
-  spec.authors       = ["Matthew Hutchinson"]
-  spec.email         = ["matt@hiddenloop.com"]
-  spec.summary       = "Display lolcommits within your iTerm terminal"
-  spec.description   = "Display lolcommits within your iTerm terminal"
-  spec.homepage      = "https://github.com/lolcommits/lolcommits-term_output"
-  spec.license       = "LGPL-3"
+  spec.name        = "lolcommits-term_output"
+  spec.version     = Lolcommits::TermOutput::VERSION
+  spec.authors     = ["Matthew Hutchinson"]
+  spec.email       = ["matt@hiddenloop.com"]
+  spec.summary     = "Display lolcommits within your iTerm terminal"
+  spec.homepage    = "https://github.com/lolcommits/lolcommits-term_output"
+  spec.license     = "LGPL-3"
+  spec.description = "Display lolcommits within your iTerm terminal"
 
   spec.metadata = {
     "homepage_uri"    => "https://github.com/lolcommits/lolcommits-term_output",

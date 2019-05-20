@@ -23,9 +23,10 @@ module Lolcommits
       end
 
       ##
-      # Post-capture hook, runs after lolcommits captures a snapshot. If the
-      # terminal is supported (and we have commits) the lolcommit image is
-      # rendered inline to the terminal output (with the commit message).
+      # Post-capture hook, runs after lolcommits captures a snapshot. If
+      # the # terminal is supported (and we have commits) the lolcommit
+      # image is rendered inline to the terminal output (with the
+      # commit message).
       #
       # See here for more details: https://iterm2.com/documentation-images.html
       #
@@ -33,8 +34,11 @@ module Lolcommits
         if terminal_supported?
           if !runner.vcs_info || runner.vcs_info.repo.empty?
             debug 'repo is empty, skipping term output'
+          elsif !image_path
+            debug 'lolcommit videos not supported'
           else
-            base64 = Base64.encode64(open(runner.main_image, &:read).to_s)
+            debug "rendering image in iTerm"
+            base64 = Base64.encode64(open(image_path, &:read).to_s)
             puts "#{begin_escape}1337;File=inline=1:#{base64};alt=#{runner.message};#{end_escape}\n"
           end
         else
@@ -45,8 +49,22 @@ module Lolcommits
       private
 
       ##
-      # Generate starting escape character sequence. Terminals running Tmux
-      # sessions require a different escape code.
+      # The full path to the lolcommit image (gif or jpg), returns nil
+      # if runner only captured a video
+      #
+      # @return [String] file path
+      #
+      def image_path
+        @image_path ||= if runner.capture_video && !runner.capture_gif
+          nil
+        else
+          runner.capture_gif ? runner.lolcommit_gif_path : runner.lolcommit_path
+        end
+      end
+
+      ##
+      # Generate starting escape character sequence. Terminals running
+      # Tmux sessions require a different escape code.
       #
       # @return [String] escape char sequence for inline images
       #
@@ -55,8 +73,8 @@ module Lolcommits
       end
 
       ##
-      # Generate ending escape character sequence. Terminals running Tmux
-      # sessions require a different escape code.
+      # Generate ending escape character sequence. Terminals running
+      # Tmux sessions require a different escape code.
       #
       # @return [String] escape char sequence for inline images
       #
@@ -65,8 +83,8 @@ module Lolcommits
       end
 
       ##
-      # Determine if the terminal is running a Tmux session (checks for the TMUX
-      # env var to be set).
+      # Determine if the terminal is running a Tmux session (checks for
+      # the TMUX env var to be set).
       #
       # @return [Boolan] true when running within a Tmux session
       #

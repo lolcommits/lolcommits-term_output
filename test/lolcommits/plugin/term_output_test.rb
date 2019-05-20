@@ -24,7 +24,7 @@ describe Lolcommits::Plugin::TermOutput do
     def runner
       # a simple lolcommits runner with an empty configuration Hash
       @runner ||= Lolcommits::Runner.new(
-        main_image: Tempfile.new('main_image.jpg')
+        lolcommit_path: Tempfile.new('lolcommit.jpg')
       )
     end
 

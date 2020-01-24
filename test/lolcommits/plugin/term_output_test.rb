@@ -38,12 +38,12 @@ describe Lolcommits::Plugin::TermOutput do
 
     describe "#enabled?" do
       it "is false by default" do
-        plugin.enabled?.must_equal false
+        _(plugin.enabled?).must_equal false
       end
 
       it "is true when configured" do
         plugin.configuration = valid_enabled_config
-        plugin.enabled?.must_equal true
+        _(plugin.enabled?).must_equal true
       end
     end
 
@@ -55,7 +55,7 @@ describe Lolcommits::Plugin::TermOutput do
         in_repo do
           plugin.configuration = valid_enabled_config
           output = fake_io_capture { plugin.run_capture_ready }
-          output.must_match matching_regex
+          _(output).must_match matching_regex
         end
       end
 
@@ -93,7 +93,7 @@ describe Lolcommits::Plugin::TermOutput do
           configured_plugin_options = plugin.configure_options!
         end
 
-        configured_plugin_options.must_equal({ enabled: true })
+        _(configured_plugin_options).must_equal({ enabled: true })
       end
 
       describe "when terminal not supported" do
@@ -110,7 +110,7 @@ describe Lolcommits::Plugin::TermOutput do
           end
 
           assert_equal configured_plugin_options, {}
-          output.must_match(/Sorry, this terminal does not support this plugin/)
+          _(output).must_match(/Sorry, this terminal does not support this plugin/)
         end
       end
     end

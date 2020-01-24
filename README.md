@@ -19,7 +19,7 @@ only) in your terminal (after committing). For example:
 
 ## Requirements
 
-* Ruby >= 2.3
+* Ruby >= 2.4
 * A webcam
 * [iTerm2](http://iterm2.com/index.html)
 * [ImageMagick](http://www.imagemagick.org)

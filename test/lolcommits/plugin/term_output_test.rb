@@ -23,9 +23,13 @@ describe Lolcommits::Plugin::TermOutput do
   describe "with a runner" do
     def runner
       # a simple lolcommits runner with an empty configuration Hash
-      @runner ||= Lolcommits::Runner.new(
-        lolcommit_path: Tempfile.new('lolcommit.jpg')
-      )
+      @runner ||= Lolcommits::Runner.new.tap do |r|
+        r.lolcommit_path = lolcommit_path
+      end
+    end
+
+    def lolcommit_path
+      File.expand_path(File.dirname(__FILE__) + '../../../assets/test_image.jpg')
     end
 
     def plugin
@@ -48,7 +52,7 @@ describe Lolcommits::Plugin::TermOutput do
     end
 
     describe "run_capture_ready" do
-      before { commit_repo_with_message("first commit!") }
+      before { commit_repo_with_message("test commit") }
       after { teardown_repo }
 
       def check_plugin_output(matching_regex)
@@ -60,7 +64,7 @@ describe Lolcommits::Plugin::TermOutput do
       end
 
       it "outputs lolcommits image inline to terminal" do
-        check_plugin_output(/^\e\]1337;File=inline=1\:.*\n;alt=first commit!;\a\n$/)
+        check_plugin_output(/^\e\]1337;File=inline=1\:.+\n;alt=test commit;\a\n$/m)
       end
 
       describe "when running in a Tmux session" do
@@ -69,7 +73,7 @@ describe Lolcommits::Plugin::TermOutput do
         end
 
         it "outputs lolcommits image inline to terminal with Tmux escape sequence" do
-          check_plugin_output(/^\ePtmux;\e\e\]1337;File=inline=1\:.*\n;alt=first commit!;\a\e\\\n$/)
+          check_plugin_output(/^\ePtmux;\e\e\]1337;File=inline=1\:.+\n;alt=test commit;\a\e\\\n$/m)
         end
       end
 

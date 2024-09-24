@@ -43,8 +43,7 @@ To disable use:
 ## Development
 
 Check out this repo and run `bin/setup`, this will install all
-dependencies and generate docs. Use `bundle exec rake` to run all tests
-and generate a coverage report.
+dependencies and generate docs. Use `bundle exec rake` to run all tests.
 
 You can also run `bin/console` for an interactive prompt that will allow
 you to experiment with the gem code.

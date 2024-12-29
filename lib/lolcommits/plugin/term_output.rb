@@ -1,14 +1,13 @@
 # frozen_string_literal: true
 
-require 'base64'
-require 'lolcommits/plugin/base'
+require "base64"
+require "lolcommits/plugin/base"
 
 module Lolcommits
   module Plugin
     class TermOutput < Base
-
       ## Prompts the user to configure the plugin's options. The default
-      #superclass method will ask for the `enabled` option to be set.
+      # superclass method will ask for the `enabled` option to be set.
       #
       # @return [Hash] hash of configured options `{ enabled: true/false }`
       # @return [Nil] if this terminal does not support this plugin
@@ -33,16 +32,16 @@ module Lolcommits
       def run_capture_ready
         if terminal_supported?
           if !runner.vcs_info || runner.vcs_info.repo.empty?
-            debug 'repo is empty, skipping term output'
+            debug "repo is empty, skipping term output"
           elsif !image_path
-            debug 'lolcommit videos not supported'
+            debug "lolcommit videos not supported"
           else
             debug "rendering image in iTerm"
             base64 = Base64.encode64(open(image_path, &:read).to_s)
             puts "#{begin_escape}1337;File=inline=1:#{base64};alt=#{runner.message};#{end_escape}\n"
           end
         else
-          debug 'Terminal not supported (requires iTerm2)'
+          debug "Terminal not supported (requires iTerm2)"
         end
       end
 
@@ -89,7 +88,7 @@ module Lolcommits
       # @return [Boolan] true when running within a Tmux session
       #
       def tmux?
-        !ENV['TMUX'].nil?
+        !ENV["TMUX"].nil?
       end
 
       ##
@@ -98,7 +97,7 @@ module Lolcommits
       # @return [Boolan] true when terminal identifies as iTerm
       #
       def terminal_supported?
-        ENV['TERM_PROGRAM'] =~ /iTerm/
+        ENV["TERM_PROGRAM"] =~ /iTerm/
       end
     end
   end

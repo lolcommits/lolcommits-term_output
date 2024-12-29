@@ -3,21 +3,20 @@
 require "test_helper"
 
 describe Lolcommits::Plugin::TermOutput do
-
   include Lolcommits::TestHelpers::GitRepo
   include Lolcommits::TestHelpers::FakeIO
 
   # initialize and reset env vars before tests run
   before do
-    @old_tmux = ENV['TMUX']
-    @old_term_program = ENV['TERM_PROGRAM']
-    ENV['TERM_PROGRAM'] = "iTerm"
-    ENV['TMUX'] = nil
+    @old_tmux = ENV["TMUX"]
+    @old_term_program = ENV["TERM_PROGRAM"]
+    ENV["TERM_PROGRAM"] = "iTerm"
+    ENV["TMUX"] = nil
   end
 
   after do
-    ENV['TERM_PROGRAM'] = @old_term_program
-    ENV['TMUX'] = @old_tmux
+    ENV["TERM_PROGRAM"] = @old_term_program
+    ENV["TMUX"] = @old_tmux
   end
 
   describe "with a runner" do
@@ -29,7 +28,7 @@ describe Lolcommits::Plugin::TermOutput do
     end
 
     def lolcommit_path
-      File.expand_path(File.dirname(__FILE__) + '../../../assets/test_image.jpg')
+      File.expand_path(File.dirname(__FILE__) + "../../../assets/test_image.jpg")
     end
 
     def plugin
@@ -69,7 +68,7 @@ describe Lolcommits::Plugin::TermOutput do
 
       describe "when running in a Tmux session" do
         before do
-          ENV['TMUX'] = 'true'
+          ENV["TMUX"] = "true"
         end
 
         it "outputs lolcommits image inline to terminal with Tmux escape sequence" do
@@ -79,7 +78,7 @@ describe Lolcommits::Plugin::TermOutput do
 
       describe "when using an unsupported terminal" do
         before do
-          ENV['TERM_PROGRAM'] = "konsole"
+          ENV["TERM_PROGRAM"] = "konsole"
         end
 
         it "outputs nothing to the terminal" do
@@ -90,7 +89,7 @@ describe Lolcommits::Plugin::TermOutput do
 
     describe "configuration" do
       it "allows plugin options to be configured" do
-        inputs = %w( true )  # enabled option
+        inputs = %w[ true ]  # enabled option
         configured_plugin_options = {}
 
         fake_io_capture(inputs: inputs) do
@@ -102,11 +101,11 @@ describe Lolcommits::Plugin::TermOutput do
 
       describe "when terminal not supported" do
         before do
-          ENV['TERM_PROGRAM'] = "konsole"
+          ENV["TERM_PROGRAM"] = "konsole"
         end
 
         it "does not allow options to be configured" do
-          inputs = %w( true )  # enabled option
+          inputs = %w[ true ]  # enabled option
           configured_plugin_options = {}
 
           output = fake_io_capture(inputs: inputs) do

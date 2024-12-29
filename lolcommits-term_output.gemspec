@@ -5,8 +5,8 @@ require 'lolcommits/term_output/version'
 Gem::Specification.new do |spec|
   spec.name        = "lolcommits-term_output"
   spec.version     = Lolcommits::TermOutput::VERSION
-  spec.authors     = ["Matthew Hutchinson"]
-  spec.email       = ["matt@hiddenloop.com"]
+  spec.authors     = [ "Matthew Hutchinson" ]
+  spec.email       = [ "matt@hiddenloop.com" ]
   spec.summary     = "Display lolcommits within your iTerm terminal"
   spec.homepage    = "https://github.com/lolcommits/lolcommits-term_output"
   spec.license     = "LGPL-3.0"
@@ -24,7 +24,7 @@ Gem::Specification.new do |spec|
   spec.test_files    = `git ls-files -- {test,features}/*`.split("\n")
   spec.bindir        = "bin"
   spec.executables   = []
-  spec.require_paths = ["lib"]
+  spec.require_paths = [ "lib" ]
 
   spec.required_ruby_version = ">= 3.1"
 

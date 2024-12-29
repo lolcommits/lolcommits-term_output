@@ -9,6 +9,11 @@ project adheres to [Semantic Versioning][Semver].
 
 - Your contribution here!
 
+## [0.5.1] - 2024-12-29
+### Changed
+- Push gems with bundler (not GitHub actions)
+- Updated documentation links
+
 ## [0.5.0] - 2024-09-24
 ### Removed
 - Support for Ruby < 3.1 (older rubies no longer supported)
@@ -68,7 +73,8 @@ project adheres to [Semantic Versioning][Semver].
 ### Changed
 - Initial release
 
-[Unreleased]: https://github.com/lolcommits/lolcommits-term_output/compare/v0.5.0...HEAD
+[Unreleased]: https://github.com/lolcommits/lolcommits-term_output/compare/v0.5.1...HEAD
+[0.5.1]: https://github.com/lolcommits/lolcommits-term_output/compare/v0.5.0...v0.5.1
 [0.5.0]: https://github.com/lolcommits/lolcommits-term_output/compare/v0.4.0...v0.5.0
 [0.4.0]: https://github.com/lolcommits/lolcommits-term_output/compare/v0.3.0...v0.4.0
 [0.3.0]: https://github.com/lolcommits/lolcommits-term_output/compare/v0.2.0...v0.3.0
@@ -82,4 +88,3 @@ project adheres to [Semantic Versioning][Semver].
 [0.0.2]: https://github.com/lolcommits/lolcommits-term_output/compare/v0.0.1...v0.0.2
 [0.0.1]: https://github.com/lolcommits/lolcommits-term_output/compare/0251ee8...v0.0.1
 [KeepAChangelog]: http://keepachangelog.com/en/1.0.0/
-[Semver]: http://semver.org/spec/v2.0.0.html

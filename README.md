@@ -90,7 +90,7 @@ The gem is available as open source under the terms of
 ## Links
 
 * [CI](https://github.com/lolcommits/lolcommits-term_output/actions/workflows/ci.yml)
-* [RDoc](http://rdoc.info/projects/lolcommits/lolcommits-term_output)
+* [RDoc](https://rubydoc.info/gems/lolcommits-term_output)
 * [Issues](http://github.com/lolcommits/lolcommits-term_output/issues)
 * [Report a bug](http://github.com/lolcommits/lolcommits-term_output/issues/new)
 * [Gem](http://rubygems.org/gems/lolcommits-term_output)
